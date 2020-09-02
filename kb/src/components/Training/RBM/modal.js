@@ -36,13 +36,9 @@ function RBMModal(props) {
     }
 
     const updateRule = (ruleId, type, value) => {
-        console.log("updating value", ruleId, type, value)
         const rule = rules.find(({ id }) => id === ruleId)
-        
-        console.log("RULE", rule)
         rule.type = type; 
         rule.value = value; 
-
         setRules([...rules])
     }
 

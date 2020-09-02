@@ -12,10 +12,6 @@ const { Search } = Input;
 function Rule(props) {
     const [editMode, setEditMode] = useState(true)
     const { id, type, value, onChange, options = null, onDelete } = props;
-
-
-    console.log("RULE >>", type, value)
-
     const config = RULE_CONFIGS[type] || null;
 
     const updateValue = (newValue) => {
@@ -127,8 +123,6 @@ function Rule(props) {
     if (!config) {
         return null;
     }
-
-    console.log("EDIT MODE", editMode)
 
     return (<div key={id}>
         {editMode ? (<div style={styles.wordRow}>
