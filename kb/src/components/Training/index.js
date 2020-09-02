@@ -7,8 +7,12 @@ import {
 } from "react-router-dom";
 import { Tabs, Button, Table, Tag, Space } from 'antd';
 import {trainingTab} from "../../config/commonConstants";
-import NER from './ner';
-import POS from "./pos";
+// import NER from './ner';
+
+import NER from "./NER"; 
+import POS from "./POS";
+import RBM from "./RBM"; 
+
 
 const { TabPane } = Tabs;
 const columns = [
@@ -116,6 +120,7 @@ function Training() {
                 <TabPane tab="Rule Based Training" key="2">
                     <div style={{textAlign: "center"}}>
                         <h1>Rule Based Training</h1>
+                        <RBM />
                         <Table columns={columns} dataSource={data} />
                     </div>
                 </TabPane>

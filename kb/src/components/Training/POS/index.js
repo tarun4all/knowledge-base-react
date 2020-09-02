@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import 'antd/dist/antd.css';
 import {
     useRouteMatch,
@@ -6,12 +6,12 @@ import {
     useParams,
 } from "react-router-dom";
 import { Row, Col, Space, Button, Input, Tag, AutoComplete } from 'antd';
-import CustomModal from '../common/customModal';
+import CustomModal from '../../common/customModal';
 
 const {Option} = AutoComplete;
-const OPTIONS = ["PERSON", "ORGANTISATION"];
+const OPTIONS = ["NOUN", "VERB", "ADJ"];
 
-function NER() {
+function POS() {
     const [modalOpen, setModalOpen] = useState(false);
     const [chips, setChips] = useState([]);
     const [options, setOptions] = useState(OPTIONS);
@@ -25,10 +25,6 @@ function NER() {
       setChips(sentence.split(" "));
     }
 
-    function merge() {
-      // console.log(inputRef.current.input.select())
-    }
-
     function search(value) {
       let _temp = OPTIONS.map(op => op.toLowerCase());
       value = value.toLowerCase();
@@ -36,7 +32,7 @@ function NER() {
       if(_temp.some(el => el.includes(value))) {
         _temp = _temp.filter(option => option.includes(value))
       } else {
-        if(value) _temp = [value];
+        if(value) _temp = ["No result found"];
         else _temp = OPTIONS;
       }
 
@@ -45,13 +41,12 @@ function NER() {
 
     return (
         <div>
-          <Button onClick={() => setModalOpen(true)}>Add NER</Button>
+          <Button onClick={() => setModalOpen(true)}>Add POS</Button>
           <CustomModal show={modalOpen} onOk={() => setModalOpen(false)} onCancel={() => setModalOpen(false)} title="Test">
             <div>
               <Input placeholder="Enter sentence" ref={inputRef} />
               <Button onClick={splitSen}>Split sentence</Button>
-              <Button onClick={merge}>Merge</Button>
-
+                
                 {chips.map((word, idx) => 
                   <Row>
                     <Col span={8}>
@@ -72,4 +67,4 @@ function NER() {
     );
 }
 
-export default NER;
+export default POS;
